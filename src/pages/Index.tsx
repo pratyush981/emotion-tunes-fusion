@@ -7,6 +7,7 @@ import VideoFeed from '@/components/VideoFeed';
 import EmotionDisplay from '@/components/EmotionDisplay';
 import MusicRecommendations from '@/components/MusicRecommendations';
 import ActivityRecommendations from '@/components/ActivityRecommendations';
+import EmotionQuiz from '@/components/EmotionQuiz';
 
 const Index = () => {
   const [currentEmotion, setCurrentEmotion] = useState<string>('');
@@ -29,6 +30,8 @@ const Index = () => {
             <Card className="p-4 bg-gray-800/50 border-gray-700">
               <VideoFeed onEmotionDetected={setCurrentEmotion} />
             </Card>
+            
+            <EmotionQuiz onEmotionDetected={setCurrentEmotion} />
             
             <Card className="p-4 bg-gray-800/50 border-gray-700">
               <div className="flex items-center justify-between">
