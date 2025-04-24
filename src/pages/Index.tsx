@@ -1,28 +1,27 @@
 
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import { Mic, MicOff, Volume2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import VideoFeed from '@/components/VideoFeed';
 import EmotionDisplay from '@/components/EmotionDisplay';
 import MusicRecommendations from '@/components/MusicRecommendations';
+import ActivityRecommendations from '@/components/ActivityRecommendations';
 
 const Index = () => {
   const [currentEmotion, setCurrentEmotion] = useState<string>('');
   const [isMicActive, setIsMicActive] = useState(false);
   const [voiceText, setVoiceText] = useState('');
-  const [sentiment, setSentiment] = useState<string>('');
 
   const toggleMicrophone = () => {
     setIsMicActive(!isMicActive);
-    // Microphone functionality would be implemented here
   };
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-900 to-gray-800 p-8">
       <div className="max-w-7xl mx-auto">
         <h1 className="text-4xl font-bold text-white mb-8 text-center">
-          Emotion Detection & Music Recommendation
+          Emotion Detection & Recommendations
         </h1>
         
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -66,6 +65,7 @@ const Index = () => {
           <div className="space-y-6">
             <EmotionDisplay emotion={currentEmotion} />
             <MusicRecommendations emotion={currentEmotion} />
+            <ActivityRecommendations emotion={currentEmotion} />
           </div>
         </div>
       </div>
