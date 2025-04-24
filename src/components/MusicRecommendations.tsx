@@ -12,24 +12,34 @@ const MusicRecommendations = ({ emotion }: MusicRecommendationsProps) => {
 
   const getRecommendations = (emotion: string) => {
     const recommendations = {
-      angry: {
-        "Heavy Metal Playlist": [
-          "Enter Sandman - Metallica",
-          "Breaking the Law - Judas Priest",
-          "Down with the Sickness - Disturbed",
-          "Chop Suey! - System of a Down"
+      happy: {
+        "Summer Hits": [
+          "Happy - Pharrell Williams",
+          "Walking on Sunshine - Katrina & The Waves",
+          "Good Vibrations - The Beach Boys",
+          "Dancing Queen - ABBA",
+          "Can't Stop the Feeling! - Justin Timberlake",
+          "Uptown Funk - Mark Ronson ft. Bruno Mars"
+        ],
+        "Dance Pop": [
+          "Shake It Off - Taylor Swift",
+          "I Wanna Dance with Somebody - Whitney Houston",
+          "Don't Stop Believin' - Journey",
+          "Sweet Caroline - Neil Diamond",
+          "I'm Still Standing - Elton John"
+        ],
+        "Modern Pop": [
+          "As It Was - Harry Styles",
+          "Blinding Lights - The Weeknd",
+          "Butter - BTS",
+          "Levitating - Dua Lipa",
+          "Watermelon Sugar - Harry Styles"
         ],
         "Rock Classics": [
-          "Back in Black - AC/DC",
-          "Welcome to the Jungle - Guns N' Roses",
-          "Smells Like Teen Spirit - Nirvana",
-          "Sweet Child O' Mine - Guns N' Roses"
-        ],
-        "Rage Against the Machine": [
-          "Killing in the Name",
-          "Bulls on Parade",
-          "Guerrilla Radio",
-          "Know Your Enemy"
+          "Sweet Home Alabama - Lynyrd Skynyrd",
+          "Sweet Child O' Mine - Guns N' Roses",
+          "All Star - Smash Mouth",
+          "I Love Rock 'n' Roll - Joan Jett"
         ]
       },
       sad: {
@@ -37,39 +47,28 @@ const MusicRecommendations = ({ emotion }: MusicRecommendationsProps) => {
           "River Flows in You - Yiruma",
           "Nuvole Bianche - Ludovico Einaudi",
           "Kiss the Rain - Yiruma",
-          "Experience - Ludovico Einaudi"
+          "Experience - Ludovico Einaudi",
+          "Gymnopédie No.1 - Erik Satie"
         ],
         "Melancholic Jazz": [
           "What a Wonderful World - Louis Armstrong",
           "My Funny Valentine - Chet Baker",
           "Round Midnight - Thelonious Monk",
-          "In a Sentimental Mood - Duke Ellington"
+          "In a Sentimental Mood - Duke Ellington",
+          "Blue in Green - Miles Davis"
         ],
-        "Soft Rock Ballads": [
-          "Nothing Compares 2 U - Sinéad O'Connor",
-          "Tears in Heaven - Eric Clapton",
-          "Yesterday - The Beatles",
-          "The Sound of Silence - Simon & Garfunkel"
-        ]
-      },
-      happy: {
-        "Summer Hits": [
-          "Happy - Pharrell Williams",
-          "Walking on Sunshine - Katrina & The Waves",
-          "Good Vibrations - The Beach Boys",
-          "Dancing Queen - ABBA"
+        "Acoustic Covers": [
+          "Hallelujah - Jeff Buckley",
+          "Mad World - Gary Jules",
+          "The Sound of Silence - Disturbed",
+          "All of Me - John Legend",
+          "Say Something - A Great Big World"
         ],
-        "Dance Pop Favorites": [
-          "Can't Stop the Feeling! - Justin Timberlake",
-          "Shake It Off - Taylor Swift",
-          "I Wanna Dance with Somebody - Whitney Houston",
-          "Uptown Funk - Mark Ronson ft. Bruno Mars"
-        ],
-        "Feel Good Classics": [
-          "Don't Stop Believin' - Journey",
-          "Sweet Caroline - Neil Diamond",
-          "I'm Still Standing - Elton John",
-          "Sweet Dreams - Eurythmics"
+        "Indie Folk": [
+          "The Night We Met - Lord Huron",
+          "I See Fire - Ed Sheeran",
+          "Youth - Daughter",
+          "Into the Mystic - Van Morrison"
         ]
       },
       neutral: {
@@ -77,19 +76,26 @@ const MusicRecommendations = ({ emotion }: MusicRecommendationsProps) => {
           "Mr. Brightside - The Killers",
           "Take Me Out - Franz Ferdinand",
           "Midnight City - M83",
-          "Electric Feel - MGMT"
+          "Electric Feel - MGMT",
+          "Somebody Else - The 1975"
         ],
-        "Alternative Hits": [
-          "Creep - Radiohead",
-          "Seven Nation Army - The White Stripes",
-          "Where Is My Mind? - Pixies",
-          "Black Hole Sun - Soundgarden"
+        "Classical Focus": [
+          "Canon in D - Pachelbel",
+          "Spring - Vivaldi",
+          "Moonlight Sonata - Beethoven",
+          "Clair de Lune - Debussy"
         ],
-        "Popular Mix": [
-          "Billie Jean - Michael Jackson",
-          "Bohemian Rhapsody - Queen",
-          "Sweet Child O' Mine - Guns N' Roses",
-          "Stairway to Heaven - Led Zeppelin"
+        "Ambient": [
+          "Weightless - Marconi Union",
+          "Horizon Variations - Max Richter",
+          "We Move Lightly - Dustin O'Halloran",
+          "An Ending (Ascent) - Brian Eno"
+        ],
+        "World Music": [
+          "Chan Chan - Buena Vista Social Club",
+          "Mas Que Nada - Sergio Mendes",
+          "Desert Rose - Sting ft. Cheb Mami",
+          "Orinoco Flow - Enya"
         ]
       }
     };
