@@ -1,6 +1,6 @@
 
 import { useState } from 'react';
-import { Gamepad, Film } from 'lucide-react';
+import { Gamepad, Film, Activity } from 'lucide-react';
 import { Card } from '@/components/ui/card';
 
 interface ActivityRecommendationsProps {
@@ -30,19 +30,55 @@ const ActivityRecommendations = ({ emotion }: ActivityRecommendationsProps) => {
         }
       },
       sad: {
-        games: ["Animal Crossing", "Minecraft", "Stardew Valley", "Journey", "Pokemon"],
-        movies: ["The Princess Bride", "Spirited Away", "Toy Story", "The Lego Movie", "Paddington"],
-        activities: ["Call a friend", "Take a warm bath", "Listen to uplifting podcasts", "Draw or color", "Make tea"]
+        games: {
+          "Comfort Games": ["Animal Crossing", "Minecraft", "Stardew Valley", "Journey"],
+          "Story-Rich": ["Life is Strange", "To The Moon", "What Remains of Edith Finch", "Spiritfarer"],
+          "Cozy Games": ["Pokemon", "Unpacking", "A Short Hike", "Coffee Talk"]
+        },
+        movies: {
+          "Feel-Good": ["The Princess Bride", "Spirited Away", "Toy Story", "The Lego Movie"],
+          "Inspiring": ["Good Will Hunting", "The Pursuit of Happyness", "Soul", "Inside Out"],
+          "Heartwarming": ["Paddington", "CODA", "Up", "Little Miss Sunshine"]
+        },
+        activities: {
+          "Social": ["Call a friend", "Join a support group", "Write a letter", "Share feelings"],
+          "Relaxing": ["Take a warm bath", "Make tea", "Listen to calming music", "Deep breathing"],
+          "Creative": ["Draw or color", "Listen to uplifting podcasts", "Journal", "Create a playlist"]
+        }
       },
       happy: {
-        games: ["Mario Kart", "Just Dance", "Overcooked", "Fall Guys", "Rocket League"],
-        movies: ["La La Land", "The Greatest Showman", "Sing", "Mamma Mia!", "School of Rock"],
-        activities: ["Call friends to hang out", "Try a new recipe", "Dance party", "Start a new hobby", "Plan a trip"]
+        games: {
+          "Multiplayer Fun": ["Mario Kart", "Just Dance", "Overcooked", "Fall Guys"],
+          "Adventure": ["Super Mario Odyssey", "The Legend of Zelda", "Rocket League", "Splatoon"],
+          "Party Games": ["Mario Party", "Jackbox Party Pack", "Among Us", "Ultimate Chicken Horse"]
+        },
+        movies: {
+          "Musical": ["La La Land", "The Greatest Showman", "Sing", "Mamma Mia!"],
+          "Comedy": ["School of Rock", "The Hangover", "Bridesmaids", "21 Jump Street"],
+          "Adventure": ["Spider-Man: Into the Spider-Verse", "Guardians of the Galaxy", "Jumanji", "Pirates of the Caribbean"]
+        },
+        activities: {
+          "Social": ["Call friends to hang out", "Host a game night", "Dance party", "Karaoke night"],
+          "Creative": ["Try a new recipe", "Start a hobby project", "Learn a dance routine", "Take photos"],
+          "Adventurous": ["Plan a trip", "Go hiking", "Try a new restaurant", "Visit a local attraction"]
+        }
       },
       neutral: {
-        games: ["The Sims", "Cities: Skylines", "Civilization", "Two Point Hospital", "Planet Zoo"],
-        movies: ["The Grand Budapest Hotel", "Ocean's Eleven", "The Martian", "Hidden Figures", "The Intern"],
-        activities: ["Read a book", "Learn something new", "Organize your space", "Try a new recipe", "Take photos"]
+        games: {
+          "Simulation": ["The Sims", "Cities: Skylines", "Civilization", "Two Point Hospital"],
+          "Strategy": ["Age of Empires", "StarCraft", "Factorio", "Civilization VI"],
+          "Management": ["Planet Zoo", "Planet Coaster", "RollerCoaster Tycoon", "Game Dev Tycoon"]
+        },
+        movies: {
+          "Drama": ["The Grand Budapest Hotel", "Ocean's Eleven", "The Martian", "Hidden Figures"],
+          "Documentary": ["My Octopus Teacher", "Free Solo", "The Social Dilemma", "The Last Dance"],
+          "Sci-Fi": ["Arrival", "Interstellar", "The Martian", "Her"]
+        },
+        activities: {
+          "Learning": ["Read a book", "Learn something new", "Take an online course", "Listen to a podcast"],
+          "Productive": ["Organize your space", "Try a new recipe", "Start a project", "Plan your week"],
+          "Exploration": ["Take photos", "Visit a museum", "Explore local shops", "Try a new coffee shop"]
+        }
       }
     };
 
