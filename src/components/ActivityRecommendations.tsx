@@ -1,4 +1,5 @@
 
+import { useState } from 'react';
 import { Gamepad, Film } from 'lucide-react';
 import { Card } from '@/components/ui/card';
 
@@ -7,12 +8,26 @@ interface ActivityRecommendationsProps {
 }
 
 const ActivityRecommendations = ({ emotion }: ActivityRecommendationsProps) => {
+  const [expandedSection, setExpandedSection] = useState<string | null>(null);
+
   const getActivities = (emotion: string) => {
     const activities = {
       angry: {
-        games: ["Stardew Valley", "Journey", "Animal Crossing", "Minecraft", "Tetris"],
-        movies: ["Inside Out", "The Secret Life of Walter Mitty", "Big Hero 6", "Up", "WALL-E"],
-        activities: ["Take a walk in nature", "Deep breathing exercises", "Write in a journal", "Yoga", "Meditation"]
+        games: {
+          "Peaceful Games": ["Stardew Valley", "Journey", "Flower", "ABZU"],
+          "Creative Games": ["Minecraft", "Animal Crossing", "Terraria", "Cities: Skylines"],
+          "Puzzle Games": ["Tetris Effect", "Portal", "Baba Is You", "The Witness"]
+        },
+        movies: {
+          "Comedy": ["The Grand Budapest Hotel", "Shaun of the Dead", "The Big Lebowski", "Groundhog Day"],
+          "Feel-Good": ["Up", "WALL-E", "The Secret Life of Walter Mitty", "Big Hero 6"],
+          "Adventure": ["The Princess Bride", "The Life of Pi", "Hunt for the Wilderpeople", "Paddington"]
+        },
+        activities: {
+          "Physical": ["Take a walk in nature", "Do yoga", "Go for a run", "Practice deep breathing"],
+          "Creative": ["Paint or draw", "Write in a journal", "Play an instrument", "Garden"],
+          "Relaxing": ["Meditation", "Take a warm bath", "Make tea", "Read a book"]
+        }
       },
       sad: {
         games: ["Animal Crossing", "Minecraft", "Stardew Valley", "Journey", "Pokemon"],
@@ -35,47 +50,52 @@ const ActivityRecommendations = ({ emotion }: ActivityRecommendationsProps) => {
     return activities[emotionKey] || activities.neutral;
   };
 
+  const toggleSection = (section: string) => {
+    setExpandedSection(expandedSection === section ? null : section);
+  };
+
+  const renderSection = (title: string, icon: React.ReactNode, content: Record<string, string[]>) => (
+    <div className="mb-6">
+      <div className="flex items-center gap-2 mb-4">
+        {icon}
+        <h2 className="text-2xl font-semibold text-white">{title}</h2>
+      </div>
+      <div className="space-y-3">
+        {Object.entries(content).map(([category, items], index) => (
+          <div key={index} className="space-y-2">
+            <div
+              onClick={() => toggleSection(`${title}-${category}`)}
+              className="p-4 rounded-lg bg-purple-900/30 text-purple-100 hover:bg-purple-800/40 transition-colors cursor-pointer border border-purple-700/30 flex justify-between items-center"
+            >
+              <span>{category}</span>
+              <span>{expandedSection === `${title}-${category}` ? '▼' : '▶'}</span>
+            </div>
+            {expandedSection === `${title}-${category}` && (
+              <div className="pl-6 space-y-2">
+                {items.map((item, itemIndex) => (
+                  <div
+                    key={itemIndex}
+                    className="p-3 rounded-lg bg-purple-900/20 text-purple-200 border-l-2 border-purple-500"
+                  >
+                    {item}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+
+  const activities = getActivities(emotion);
+
   return (
     <Card className="p-6 bg-gray-800/50 border-gray-700">
       <div className="space-y-6">
-        <div>
-          <div className="flex items-center gap-2 mb-4">
-            <Gamepad className="w-5 h-5 text-white" />
-            <h2 className="text-2xl font-semibold text-white">Games to Try</h2>
-          </div>
-          <div className="space-y-2">
-            {getActivities(emotion).games.map((game, index) => (
-              <div key={index} className="p-3 rounded-lg bg-gray-700/30 text-white hover:bg-gray-700/50 transition-colors">
-                {game}
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div>
-          <div className="flex items-center gap-2 mb-4">
-            <Film className="w-5 h-5 text-white" />
-            <h2 className="text-2xl font-semibold text-white">Movies to Watch</h2>
-          </div>
-          <div className="space-y-2">
-            {getActivities(emotion).movies.map((movie, index) => (
-              <div key={index} className="p-3 rounded-lg bg-gray-700/30 text-white hover:bg-gray-700/50 transition-colors">
-                {movie}
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div>
-          <h2 className="text-2xl font-semibold text-white mb-4">Activities</h2>
-          <div className="space-y-2">
-            {getActivities(emotion).activities.map((activity, index) => (
-              <div key={index} className="p-3 rounded-lg bg-gray-700/30 text-white hover:bg-gray-700/50 transition-colors">
-                {activity}
-              </div>
-            ))}
-          </div>
-        </div>
+        {renderSection("Games", <Gamepad className="w-5 h-5 text-purple-400" />, activities.games)}
+        {renderSection("Movies", <Film className="w-5 h-5 text-purple-400" />, activities.movies)}
+        {renderSection("Activities", <Activity className="w-5 h-5 text-purple-400" />, activities.activities)}
       </div>
     </Card>
   );
