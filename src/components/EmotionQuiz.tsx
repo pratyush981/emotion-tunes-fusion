@@ -30,11 +30,27 @@ const quizQuestions: QuizQuestion[] = [
     ]
   },
   {
-    question: "What kind of activity appeals to you right now?",
+    question: "What kind of music do you want to listen to right now?",
     options: [
-      { text: "Something energetic", emotion: "happy" },
-      { text: "Something calming", emotion: "neutral" },
-      { text: "Nothing at all", emotion: "sad" }
+      { text: "Upbeat and energetic", emotion: "happy" },
+      { text: "Calm and soothing", emotion: "neutral" },
+      { text: "Emotional and deep", emotion: "sad" }
+    ]
+  },
+  {
+    question: "How do you feel about socializing at the moment?",
+    options: [
+      { text: "Want to meet people", emotion: "happy" },
+      { text: "Prefer being alone", emotion: "sad" },
+      { text: "Open to either", emotion: "neutral" }
+    ]
+  },
+  {
+    question: "What's your current stress level?",
+    options: [
+      { text: "Very stressed", emotion: "angry" },
+      { text: "Feeling peaceful", emotion: "happy" },
+      { text: "Somewhat tense", emotion: "neutral" }
     ]
   }
 ];
@@ -62,13 +78,14 @@ const EmotionQuiz = ({ onEmotionDetected }: EmotionQuizProps) => {
   };
 
   const determineFinalEmotion = (emotionAnswers: string[]): string => {
-    const emotionCount: { [key: string]: number } = {};
-    emotionAnswers.forEach(emotion => {
-      emotionCount[emotion] = (emotionCount[emotion] || 0) + 1;
-    });
-    return Object.entries(emotionCount).reduce((a, b) => 
-      emotionCount[a] > emotionCount[b[0]] ? a : b[0]
-    );
+    const emotionCounts = emotionAnswers.reduce((acc: { [key: string]: number }, emotion) => {
+      acc[emotion] = (acc[emotion] || 0) + 1;
+      return acc;
+    }, {});
+
+    return Object.entries(emotionCounts).reduce((a, b) => 
+      emotionCounts[a] > emotionCounts[b[0]] ? a : b[0]
+    , Object.keys(emotionCounts)[0]);
   };
 
   const restartQuiz = () => {
@@ -82,7 +99,7 @@ const EmotionQuiz = ({ onEmotionDetected }: EmotionQuizProps) => {
       <h2 className="text-2xl font-semibold text-white mb-6">Emotion Quiz</h2>
       {!isComplete ? (
         <div className="space-y-6">
-          <p className="text-lg text-white mb-4">
+          <p className="text-xl text-purple-300 mb-4 font-medium">
             {quizQuestions[currentQuestion].question}
           </p>
           <div className="grid gap-4">
@@ -90,24 +107,28 @@ const EmotionQuiz = ({ onEmotionDetected }: EmotionQuizProps) => {
               <Button
                 key={index}
                 variant="outline"
-                className="flex items-center justify-start gap-3 p-4 text-white hover:bg-gray-700/50"
+                className="flex items-center justify-start gap-3 p-4 text-lg font-medium bg-gray-700/30 text-white hover:bg-purple-600/30 hover:text-purple-200 transition-all"
                 onClick={() => handleAnswer(option.emotion)}
               >
-                {option.emotion === 'happy' && <Smile className="w-5 h-5" />}
-                {option.emotion === 'sad' && <Frown className="w-5 h-5" />}
-                {option.emotion === 'neutral' && <Meh className="w-5 h-5" />}
+                {option.emotion === 'happy' && <Smile className="w-5 h-5 text-green-400" />}
+                {option.emotion === 'sad' && <Frown className="w-5 h-5 text-blue-400" />}
+                {option.emotion === 'neutral' && <Meh className="w-5 h-5 text-yellow-400" />}
                 {option.text}
               </Button>
             ))}
           </div>
-          <p className="text-sm text-gray-400 mt-4">
+          <p className="text-sm text-purple-300 mt-4">
             Question {currentQuestion + 1} of {quizQuestions.length}
           </p>
         </div>
       ) : (
         <div className="text-center">
-          <p className="text-white mb-4">Quiz completed!</p>
-          <Button onClick={restartQuiz} variant="outline" className="text-white">
+          <p className="text-purple-300 mb-4 text-lg">Quiz completed!</p>
+          <Button 
+            onClick={restartQuiz} 
+            variant="outline" 
+            className="text-purple-200 hover:bg-purple-600/30 hover:text-purple-100"
+          >
             Take Quiz Again
           </Button>
         </div>

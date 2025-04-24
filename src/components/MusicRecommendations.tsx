@@ -44,16 +44,16 @@ const MusicRecommendations = ({ emotion }: MusicRecommendationsProps) => {
   };
 
   return (
-    <Card className="p-6 bg-gray-800/50 border-gray-700">
-      <div className="flex items-center gap-2 mb-4">
-        <Music className="w-5 h-5 text-white" />
+    <Card className="p-6 bg-gray-800/50 border-gray-700 transform transition-all duration-300 hover:bg-gray-800/70">
+      <div className="flex items-center gap-2 mb-6">
+        <Music className="w-6 h-6 text-purple-400" />
         <h2 className="text-2xl font-semibold text-white">Music for {emotion || 'You'}</h2>
       </div>
-      <div className="space-y-2">
+      <div className="space-y-3">
         {getRecommendations(emotion).map((song, index) => (
           <div
             key={index}
-            className="p-3 rounded-lg bg-gray-700/30 text-white hover:bg-gray-700/50 transition-colors"
+            className="p-4 rounded-lg bg-purple-900/30 text-purple-100 hover:bg-purple-800/40 transition-colors cursor-pointer border border-purple-700/30"
           >
             {song}
           </div>
